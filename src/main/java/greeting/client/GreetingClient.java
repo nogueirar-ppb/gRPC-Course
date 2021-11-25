@@ -21,12 +21,12 @@ public class GreetingClient {
         // old and dummt
         //DummyServiceGrpc.DummyServiceBlockingStub syncClient = DummyServiceGrpc.newBlockingStub(channel);
 
-        //For an asynchronous client:
+        //For an asynchronous sum.client:
         //DummyServiceGrpc.DummyServiceFutureStub aSyncClient = DummyServiceGrpc.newFutureStub(channel);
 
 
 
-        //create a greet service client (blocking - synchronous)
+        //create a greet service sum.client (blocking - synchronous)
         GreetServiceGrpc.GreetServiceBlockingStub greetClient = GreetServiceGrpc.newBlockingStub(channel);
 
         //created a protobuf greeting message

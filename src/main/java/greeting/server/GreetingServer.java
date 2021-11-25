@@ -18,7 +18,7 @@ public class GreetingServer {
         Runtime.getRuntime().addShutdownHook(new Thread(()->{
             System.out.println("Received shutdown request");
             server.shutdown();
-            System.out.println("Successfully stopped the server");
+            System.out.println("Successfully stopped the sum.server");
         }));
 
         server.awaitTermination();
