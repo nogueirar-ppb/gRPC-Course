@@ -26,7 +26,7 @@ public class GreetingClient {
 
 
 
-        //create a greet service sum.client (blocking - synchronous)
+        //create a greet service client (blocking - synchronous)
         GreetServiceGrpc.GreetServiceBlockingStub greetClient = GreetServiceGrpc.newBlockingStub(channel);
 
         //created a protobuf greeting message
