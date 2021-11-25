@@ -10,7 +10,7 @@ public class SumServer {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         Server server = ServerBuilder.forPort(50051)
-                .addService(new SumServerImpl())
+                .addService(new SumServiceImpl())
                 .build();
 
         System.out.println("Server starting...");

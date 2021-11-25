@@ -7,7 +7,7 @@ import sum.SumOuterClass.*;
 import sum.SumServiceGrpc;
 
 
-public class SumServerImpl extends SumServiceGrpc.SumServiceImplBase {
+public class SumServiceImpl extends SumServiceGrpc.SumServiceImplBase {
 
     public void doSum(SumRequest request, StreamObserver<SumResponse> responseObserver) {
         Sum sum = request.getSum();

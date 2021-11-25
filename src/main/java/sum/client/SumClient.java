@@ -34,6 +34,5 @@ public class SumClient {
         System.out.println("Shutting down channel");
 
         channel.shutdown();
-
     }
 }
