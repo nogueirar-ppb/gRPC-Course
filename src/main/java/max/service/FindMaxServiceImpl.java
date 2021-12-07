@@ -1,4 +1,4 @@
-package max;
+package max.service;
 
 import com.google.api.Service;
 import com.proto.max.FindMaxServiceGrpc;
