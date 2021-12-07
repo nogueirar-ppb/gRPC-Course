@@ -16,7 +16,7 @@ public final class DummyServiceGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   /**
-   * Creates a new async stub that supports all call types for the primeDecomp.service
+   * Creates a new async stub that supports all call types for the service
    */
   public static DummyServiceStub newStub(io.grpc.Channel channel) {
     io.grpc.stub.AbstractStub.StubFactory<DummyServiceStub> factory =
@@ -30,7 +30,7 @@ public final class DummyServiceGrpc {
   }
 
   /**
-   * Creates a new blocking-style stub that supports unary and streaming output calls on the primeDecomp.service
+   * Creates a new blocking-style stub that supports unary and streaming output calls on the service
    */
   public static DummyServiceBlockingStub newBlockingStub(
       io.grpc.Channel channel) {
@@ -45,7 +45,7 @@ public final class DummyServiceGrpc {
   }
 
   /**
-   * Creates a new ListenableFuture-style stub that supports unary calls on the primeDecomp.service
+   * Creates a new ListenableFuture-style stub that supports unary calls on the service
    */
   public static DummyServiceFutureStub newFutureStub(
       io.grpc.Channel channel) {
