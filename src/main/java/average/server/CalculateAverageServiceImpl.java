@@ -1,4 +1,4 @@
-package average;
+package average.server;
 
 import com.proto.average.AverageRequest;
 import com.proto.average.AverageResult;
