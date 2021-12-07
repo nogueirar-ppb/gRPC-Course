@@ -1,3 +1,5 @@
+package com.proto.primeDecomp;
+
 import static io.grpc.MethodDescriptor.generateFullMethodName;
 
 /**
@@ -10,32 +12,32 @@ public final class PrimeDecompServiceGrpc {
 
   private PrimeDecompServiceGrpc() {}
 
-  public static final String SERVICE_NAME = "PrimeDecompService";
+  public static final String SERVICE_NAME = "primeDecomp.PrimeDecompService";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<Prime.PrimeDecompRequest,
-      Prime.PrimeDecompResponse> getDecomposePrimeNumberMethod;
+  private static volatile io.grpc.MethodDescriptor<com.proto.primeDecomp.PrimeDecompRequest,
+      com.proto.primeDecomp.PrimeDecompResponse> getDecomposePrimeNumberMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "DecomposePrimeNumber",
-      requestType = Prime.PrimeDecompRequest.class,
-      responseType = Prime.PrimeDecompResponse.class,
+      requestType = com.proto.primeDecomp.PrimeDecompRequest.class,
+      responseType = com.proto.primeDecomp.PrimeDecompResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
-  public static io.grpc.MethodDescriptor<Prime.PrimeDecompRequest,
-      Prime.PrimeDecompResponse> getDecomposePrimeNumberMethod() {
-    io.grpc.MethodDescriptor<Prime.PrimeDecompRequest, Prime.PrimeDecompResponse> getDecomposePrimeNumberMethod;
+  public static io.grpc.MethodDescriptor<com.proto.primeDecomp.PrimeDecompRequest,
+      com.proto.primeDecomp.PrimeDecompResponse> getDecomposePrimeNumberMethod() {
+    io.grpc.MethodDescriptor<com.proto.primeDecomp.PrimeDecompRequest, com.proto.primeDecomp.PrimeDecompResponse> getDecomposePrimeNumberMethod;
     if ((getDecomposePrimeNumberMethod = PrimeDecompServiceGrpc.getDecomposePrimeNumberMethod) == null) {
       synchronized (PrimeDecompServiceGrpc.class) {
         if ((getDecomposePrimeNumberMethod = PrimeDecompServiceGrpc.getDecomposePrimeNumberMethod) == null) {
           PrimeDecompServiceGrpc.getDecomposePrimeNumberMethod = getDecomposePrimeNumberMethod =
-              io.grpc.MethodDescriptor.<Prime.PrimeDecompRequest, Prime.PrimeDecompResponse>newBuilder()
+              io.grpc.MethodDescriptor.<com.proto.primeDecomp.PrimeDecompRequest, com.proto.primeDecomp.PrimeDecompResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "DecomposePrimeNumber"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Prime.PrimeDecompRequest.getDefaultInstance()))
+                  com.proto.primeDecomp.PrimeDecompRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Prime.PrimeDecompResponse.getDefaultInstance()))
+                  com.proto.primeDecomp.PrimeDecompResponse.getDefaultInstance()))
               .setSchemaDescriptor(new PrimeDecompServiceMethodDescriptorSupplier("DecomposePrimeNumber"))
               .build();
         }
@@ -94,8 +96,8 @@ public final class PrimeDecompServiceGrpc {
 
     /**
      */
-    public void decomposePrimeNumber(Prime.PrimeDecompRequest request,
-        io.grpc.stub.StreamObserver<Prime.PrimeDecompResponse> responseObserver) {
+    public void decomposePrimeNumber(com.proto.primeDecomp.PrimeDecompRequest request,
+        io.grpc.stub.StreamObserver<com.proto.primeDecomp.PrimeDecompResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDecomposePrimeNumberMethod(), responseObserver);
     }
 
@@ -105,8 +107,8 @@ public final class PrimeDecompServiceGrpc {
             getDecomposePrimeNumberMethod(),
             io.grpc.stub.ServerCalls.asyncServerStreamingCall(
               new MethodHandlers<
-                Prime.PrimeDecompRequest,
-                Prime.PrimeDecompResponse>(
+                com.proto.primeDecomp.PrimeDecompRequest,
+                com.proto.primeDecomp.PrimeDecompResponse>(
                   this, METHODID_DECOMPOSE_PRIME_NUMBER)))
           .build();
     }
@@ -128,8 +130,8 @@ public final class PrimeDecompServiceGrpc {
 
     /**
      */
-    public void decomposePrimeNumber(Prime.PrimeDecompRequest request,
-        io.grpc.stub.StreamObserver<Prime.PrimeDecompResponse> responseObserver) {
+    public void decomposePrimeNumber(com.proto.primeDecomp.PrimeDecompRequest request,
+        io.grpc.stub.StreamObserver<com.proto.primeDecomp.PrimeDecompResponse> responseObserver) {
       io.grpc.stub.ClientCalls.asyncServerStreamingCall(
           getChannel().newCall(getDecomposePrimeNumberMethod(), getCallOptions()), request, responseObserver);
     }
@@ -151,8 +153,8 @@ public final class PrimeDecompServiceGrpc {
 
     /**
      */
-    public java.util.Iterator<Prime.PrimeDecompResponse> decomposePrimeNumber(
-        Prime.PrimeDecompRequest request) {
+    public java.util.Iterator<com.proto.primeDecomp.PrimeDecompResponse> decomposePrimeNumber(
+        com.proto.primeDecomp.PrimeDecompRequest request) {
       return io.grpc.stub.ClientCalls.blockingServerStreamingCall(
           getChannel(), getDecomposePrimeNumberMethod(), getCallOptions(), request);
     }
@@ -193,8 +195,8 @@ public final class PrimeDecompServiceGrpc {
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_DECOMPOSE_PRIME_NUMBER:
-          serviceImpl.decomposePrimeNumber((Prime.PrimeDecompRequest) request,
-              (io.grpc.stub.StreamObserver<Prime.PrimeDecompResponse>) responseObserver);
+          serviceImpl.decomposePrimeNumber((com.proto.primeDecomp.PrimeDecompRequest) request,
+              (io.grpc.stub.StreamObserver<com.proto.primeDecomp.PrimeDecompResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -218,7 +220,7 @@ public final class PrimeDecompServiceGrpc {
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
-      return Prime.getDescriptor();
+      return com.proto.primeDecomp.Prime.getDescriptor();
     }
 
     @java.lang.Override

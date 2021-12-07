@@ -78,7 +78,7 @@ public final class GreetServiceGrpc {
   }
 
   /**
-   * Creates a new async stub that supports all call types for the service
+   * Creates a new async stub that supports all call types for the primeDecomp.service
    */
   public static GreetServiceStub newStub(io.grpc.Channel channel) {
     io.grpc.stub.AbstractStub.StubFactory<GreetServiceStub> factory =
@@ -92,7 +92,7 @@ public final class GreetServiceGrpc {
   }
 
   /**
-   * Creates a new blocking-style stub that supports unary and streaming output calls on the service
+   * Creates a new blocking-style stub that supports unary and streaming output calls on the primeDecomp.service
    */
   public static GreetServiceBlockingStub newBlockingStub(
       io.grpc.Channel channel) {
@@ -107,7 +107,7 @@ public final class GreetServiceGrpc {
   }
 
   /**
-   * Creates a new ListenableFuture-style stub that supports unary calls on the service
+   * Creates a new ListenableFuture-style stub that supports unary calls on the primeDecomp.service
    */
   public static GreetServiceFutureStub newFutureStub(
       io.grpc.Channel channel) {

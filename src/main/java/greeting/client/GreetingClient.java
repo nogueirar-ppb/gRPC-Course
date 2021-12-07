@@ -22,7 +22,7 @@ public class GreetingClient {
         //DummyServiceGrpc.DummyServiceFutureStub aSyncClient = DummyServiceGrpc.newFutureStub(channel);
 
 
-        //create a greet service client (blocking - synchronous)
+        //create a greet primeDecomp.service client (blocking - synchronous)
         GreetServiceGrpc.GreetServiceBlockingStub greetClient = GreetServiceGrpc.newBlockingStub(channel);
 
 
