@@ -35,17 +35,13 @@ public class CalculateAverageClient {
 
             @Override
             public void onCompleted() {
-                System.out.println("Average calculated");
+                System.out.println("Average calculated. Finishing...");
                 latch.countDown();
             }
         });
 
         requestObserver.onNext(AverageRequest.newBuilder()
-                .setNumber(1)
-                .build());
-
-        requestObserver.onNext(AverageRequest.newBuilder()
-                .setNumber(2)
+                .setNumber(6)
                 .build());
 
         requestObserver.onNext(AverageRequest.newBuilder()
@@ -53,7 +49,11 @@ public class CalculateAverageClient {
                 .build());
 
         requestObserver.onNext(AverageRequest.newBuilder()
-                .setNumber(4)
+                .setNumber(3)
+                .build());
+
+        requestObserver.onNext(AverageRequest.newBuilder()
+                .setNumber(12)
                 .build());
 
 
