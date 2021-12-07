@@ -58,10 +58,18 @@ public class GreetingClient {
         });
 
         Arrays.asList("Ricardo", "Kiko", "Draxicor", "Neko", "Morty", "Kira", "Frodo").forEach(
-                name -> requestObserver.onNext(GreetEveryoneRequest.newBuilder()
-                        .setGreeting(Greeting.newBuilder()
-                                .setFirstName(name))
-                        .build())
+                name -> {
+                    System.out.println("Sendind: " + name);
+                    requestObserver.onNext(GreetEveryoneRequest.newBuilder()
+                            .setGreeting(Greeting.newBuilder()
+                                    .setFirstName(name))
+                            .build());
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
         );
 
         requestObserver.onCompleted();
