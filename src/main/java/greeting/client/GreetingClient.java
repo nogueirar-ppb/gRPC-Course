@@ -4,43 +4,94 @@ import com.proto.dummy.DummyServiceGrpc;
 import com.proto.greet.*;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+import io.grpc.stub.StreamObserver;
+
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 public class GreetingClient {
-
     public static void main(String[] args) {
+        System.out.println("Starting Client");
 
+        GreetingClient main = new GreetingClient();
+        main.run();
+    }
+
+    public void run() {
         ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 50051)
                 .usePlaintext()
                 .build();
 
-        System.out.println("Creating Stub");
+        //doUnaryCall(channel);
+        //doServerStreamingCall(channel);
+        doClientStreamingCall(channel);
 
-        // old and dummt
-        //DummyServiceGrpc.DummyServiceBlockingStub syncClient = DummyServiceGrpc.newBlockingStub(channel);
+        System.out.println("Shutting down channel");
+        channel.shutdown();
 
-        //For an asynchronous sum.client:
-        //DummyServiceGrpc.DummyServiceFutureStub aSyncClient = DummyServiceGrpc.newFutureStub(channel);
+    }
+
+    private void doClientStreamingCall(ManagedChannel channel) {
+        //create a client (stub)
+        GreetServiceGrpc.GreetServiceStub asyncClient = GreetServiceGrpc.newStub(channel);
+
+        CountDownLatch latch = new CountDownLatch(1);
+
+        StreamObserver<LongGreetRequest> requestObserver = asyncClient.longGreet(new StreamObserver<LongGreetResponse>() {
+            @Override
+            public void onNext(LongGreetResponse value) {
+                //we get a response from the server
+                //will be called only once
+                System.out.println("Received a response from the server");
+                //print the response
+                System.out.println(value.getResult());
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                // we get an error from the server
+            }
+
+            @Override
+            public void onCompleted() {
+                // the server is done sending us data
+                System.out.println("Server has completed sending messages");
+                latch.countDown();
+            }
+        });
+        //message 1
+        System.out.println("Sending message 1");
+        requestObserver.onNext(LongGreetRequest.newBuilder()
+                .setGreeting(Greeting.newBuilder()
+                        .setFirstName("Ricardo"))
+                .build());
+        //message 2
+        System.out.println("Sending message 2");
+        requestObserver.onNext(LongGreetRequest.newBuilder()
+                .setGreeting(Greeting.newBuilder()
+                        .setFirstName("Kiko"))
+                .build());
+        //message 3
+        System.out.println("Sending message 3");
+        requestObserver.onNext(LongGreetRequest.newBuilder()
+                .setGreeting(Greeting.newBuilder()
+                        .setFirstName("Draxicor"))
+                .build());
+
+        //we tell the server that the client is done sending data
+        requestObserver.onCompleted();
+
+        try {
+            latch.await(3L, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
 
-        //create a greet primeDecomp.service client (blocking - synchronous)
+    }
+
+    private void doServerStreamingCall(ManagedChannel channel) {
         GreetServiceGrpc.GreetServiceBlockingStub greetClient = GreetServiceGrpc.newBlockingStub(channel);
-
-
-        //Unary
-       /* //created a protobuf greeting message
-        Greeting greeting = Greeting.newBuilder().
-                setFirstName("Ricardo").
-                setLastName("Nogueira").
-                build();
-
-        //created a protobuf GreetRequest using our Greeting
-        GreetRequest greetRequest = GreetRequest.newBuilder().
-                setGreeting(greeting).
-                build();
-
-        // call the rpc and get back a GreetResponse
-        GreetResponse greetResponse = greetClient.greet(greetRequest);*/
-
 
         //Server Streaming
         //We prepare the request
@@ -58,7 +109,27 @@ public class GreetingClient {
         //System.out.println(greetResponse.getResult());
 
 
-        System.out.println("Shutting down channel");
-        channel.shutdown();
     }
+
+    private void doUnaryCall(ManagedChannel channel) {
+        //Unary
+        //create a greet service client (blocking - synchronous)
+        GreetServiceGrpc.GreetServiceBlockingStub greetClient = GreetServiceGrpc.newBlockingStub(channel);
+
+        //created a protobuf greeting message
+        Greeting greeting = Greeting.newBuilder().
+                setFirstName("Ricardo").
+                setLastName("Nogueira").
+                build();
+
+        //created a protobuf GreetRequest using our Greeting
+        GreetRequest greetRequest = GreetRequest.newBuilder().
+                setGreeting(greeting).
+                build();
+
+        // call the rpc and get back a GreetResponse
+        GreetResponse greetResponse = greetClient.greet(greetRequest);
+    }
+
+
 }
