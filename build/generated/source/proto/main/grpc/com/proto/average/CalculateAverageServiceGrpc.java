@@ -46,6 +46,37 @@ public final class CalculateAverageServiceGrpc {
     return getCalculateAverageMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<com.proto.average.SquareRootRequest,
+      com.proto.average.SquareRootResponse> getSquareRootMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "SquareRoot",
+      requestType = com.proto.average.SquareRootRequest.class,
+      responseType = com.proto.average.SquareRootResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.proto.average.SquareRootRequest,
+      com.proto.average.SquareRootResponse> getSquareRootMethod() {
+    io.grpc.MethodDescriptor<com.proto.average.SquareRootRequest, com.proto.average.SquareRootResponse> getSquareRootMethod;
+    if ((getSquareRootMethod = CalculateAverageServiceGrpc.getSquareRootMethod) == null) {
+      synchronized (CalculateAverageServiceGrpc.class) {
+        if ((getSquareRootMethod = CalculateAverageServiceGrpc.getSquareRootMethod) == null) {
+          CalculateAverageServiceGrpc.getSquareRootMethod = getSquareRootMethod =
+              io.grpc.MethodDescriptor.<com.proto.average.SquareRootRequest, com.proto.average.SquareRootResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "SquareRoot"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.proto.average.SquareRootRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.proto.average.SquareRootResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new CalculateAverageServiceMethodDescriptorSupplier("SquareRoot"))
+              .build();
+        }
+      }
+    }
+    return getSquareRootMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -101,6 +132,16 @@ public final class CalculateAverageServiceGrpc {
       return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getCalculateAverageMethod(), responseObserver);
     }
 
+    /**
+     * <pre>
+     *this will throw an exception if the sent number is negative
+     * </pre>
+     */
+    public void squareRoot(com.proto.average.SquareRootRequest request,
+        io.grpc.stub.StreamObserver<com.proto.average.SquareRootResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSquareRootMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -110,6 +151,13 @@ public final class CalculateAverageServiceGrpc {
                 com.proto.average.AverageRequest,
                 com.proto.average.AverageResult>(
                   this, METHODID_CALCULATE_AVERAGE)))
+          .addMethod(
+            getSquareRootMethod(),
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
+              new MethodHandlers<
+                com.proto.average.SquareRootRequest,
+                com.proto.average.SquareRootResponse>(
+                  this, METHODID_SQUARE_ROOT)))
           .build();
     }
   }
@@ -135,6 +183,17 @@ public final class CalculateAverageServiceGrpc {
       return io.grpc.stub.ClientCalls.asyncClientStreamingCall(
           getChannel().newCall(getCalculateAverageMethod(), getCallOptions()), responseObserver);
     }
+
+    /**
+     * <pre>
+     *this will throw an exception if the sent number is negative
+     * </pre>
+     */
+    public void squareRoot(com.proto.average.SquareRootRequest request,
+        io.grpc.stub.StreamObserver<com.proto.average.SquareRootResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getSquareRootMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -149,6 +208,16 @@ public final class CalculateAverageServiceGrpc {
     protected CalculateAverageServiceBlockingStub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new CalculateAverageServiceBlockingStub(channel, callOptions);
+    }
+
+    /**
+     * <pre>
+     *this will throw an exception if the sent number is negative
+     * </pre>
+     */
+    public com.proto.average.SquareRootResponse squareRoot(com.proto.average.SquareRootRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getSquareRootMethod(), getCallOptions(), request);
     }
   }
 
@@ -165,9 +234,21 @@ public final class CalculateAverageServiceGrpc {
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new CalculateAverageServiceFutureStub(channel, callOptions);
     }
+
+    /**
+     * <pre>
+     *this will throw an exception if the sent number is negative
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.proto.average.SquareRootResponse> squareRoot(
+        com.proto.average.SquareRootRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getSquareRootMethod(), getCallOptions()), request);
+    }
   }
 
-  private static final int METHODID_CALCULATE_AVERAGE = 0;
+  private static final int METHODID_SQUARE_ROOT = 0;
+  private static final int METHODID_CALCULATE_AVERAGE = 1;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -186,6 +267,10 @@ public final class CalculateAverageServiceGrpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
+        case METHODID_SQUARE_ROOT:
+          serviceImpl.squareRoot((com.proto.average.SquareRootRequest) request,
+              (io.grpc.stub.StreamObserver<com.proto.average.SquareRootResponse>) responseObserver);
+          break;
         default:
           throw new AssertionError();
       }
@@ -251,6 +336,7 @@ public final class CalculateAverageServiceGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new CalculateAverageServiceFileDescriptorSupplier())
               .addMethod(getCalculateAverageMethod())
+              .addMethod(getSquareRootMethod())
               .build();
         }
       }

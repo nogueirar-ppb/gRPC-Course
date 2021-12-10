@@ -1,8 +1,7 @@
 package average.server;
 
-import com.proto.average.AverageRequest;
-import com.proto.average.AverageResult;
-import com.proto.average.CalculateAverageServiceGrpc;
+import com.proto.average.*;
+import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 
 public class CalculateAverageServiceImpl extends CalculateAverageServiceGrpc.CalculateAverageServiceImplBase {
@@ -12,10 +11,11 @@ public class CalculateAverageServiceImpl extends CalculateAverageServiceGrpc.Cal
 
             double totalCount = 0;
             int totalSum = 0;
+
             @Override
             public void onNext(AverageRequest value) {
                 totalSum += value.getNumber();
-                totalCount ++;
+                totalCount++;
             }
 
             @Override
@@ -27,7 +27,7 @@ public class CalculateAverageServiceImpl extends CalculateAverageServiceGrpc.Cal
             public void onCompleted() {
                 responseObserver.onNext(
                         AverageResult.newBuilder()
-                                .setAverage(totalSum/totalCount)
+                                .setAverage(totalSum / totalCount)
                                 .build()
                 );
 
@@ -36,5 +36,25 @@ public class CalculateAverageServiceImpl extends CalculateAverageServiceGrpc.Cal
         };
 
         return requestObserver;
+    }
+
+
+    @Override
+    public void squareRoot(SquareRootRequest request, StreamObserver<SquareRootResponse> responseObserver) {
+        Integer number = request.getNumber();
+        if (number >= 0) {
+            double root = Math.sqrt(number);
+            responseObserver.onNext(SquareRootResponse.newBuilder()
+                    .setNumberRoot(root)
+                    .build());
+            responseObserver.onCompleted();
+        } else {
+            responseObserver.onError(
+                    Status.INVALID_ARGUMENT
+                            .withDescription("The number being sent is not positive")
+                            .augmentDescription("Additional error line. Number sent was: " + number)
+                            .asRuntimeException()
+            );
+        }
     }
 }
